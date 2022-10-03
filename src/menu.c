@@ -4,6 +4,7 @@
 int menu(){
   unsigned short int opt = 0;
   unsigned short int exit = 0;
+  while (!exit) {
   printf("1 Ingresar reparaciones\n");
   printf("2 Buscar una reparacion segun el tipo de dispositivo\n");
   printf("3 Buscar la reparacion con mayor precio final\n");
@@ -13,7 +14,6 @@ int menu(){
   printf("7 Almacenar todas las reparaciones\n");
   printf("8 Salir del programa\n");
   scanf("%hu", &opt);
-  while (!exit) {
     switch (opt) {
       case 8:
         exit = 1;
