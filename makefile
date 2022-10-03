@@ -1,4 +1,4 @@
-OBJS = src/main.o src/menu.o
+OBJS = objs/main.o objs/menu.o
 INC = inc/menu.h
 BIN = ex
 CFLAGS = -g -Wall
@@ -9,7 +9,7 @@ app: $(OBJS) $(INC)
 debug: $(OBJS) $(INC)
 	$(CC) -o $(BIN) $(OBJS) $(CFLAGS)
 
-src/%.o: src/%.c
+objs/%.o: src/%.c
 	$(CC) -c $< -o $@
 
 clean:

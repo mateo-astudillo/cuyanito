@@ -4,7 +4,6 @@
 int menu(){
   unsigned short int opt = 0;
   unsigned short int exit = 0;
-  printf("0 Salir\n");
   printf("1 Ingresar reparaciones\n");
   printf("2 Buscar una reparacion segun el tipo de dispositivo\n");
   printf("3 Buscar la reparacion con mayor precio final\n");
@@ -16,12 +15,29 @@ int menu(){
   scanf("%hu", &opt);
   while (!exit) {
     switch (opt) {
-      case 0:
+      case 8:
         exit = 1;
         break;
       case 1:
+        //insert();
         break;
       case 2:
+        //searh_type();
+        break;
+      case 3:
+        //searh_price();
+        break;
+      case 4:
+        //show_employed();
+        break;
+      case 5:
+        //show_busisness();
+        break;
+      case 6:
+        //show_date();
+        break;
+      case 7:
+        //update();
         break;
       default:
         printf("Option incorrect\n");
