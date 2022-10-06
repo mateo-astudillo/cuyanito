@@ -1,9 +1,11 @@
-#include <stdio.h>
-#include <inc/menu.h>
+//#include <inc/menu.h> // Final
+#include "../inc/menu.h" // Dev
+#include <stdlib.h>
 
 int menu(){
   unsigned short int opt = 0;
   unsigned short int exit = 0;
+  char parse[LENGTH_PARSE];
   while (!exit) {
   printf("1 Ingresar reparaciones\n");
   printf("2 Buscar una reparacion segun el tipo de dispositivo\n");
@@ -13,7 +15,8 @@ int menu(){
   printf("6 Mostrar las reparaciones realizadas en una fecha \n");
   printf("7 Almacenar todas las reparaciones\n");
   printf("8 Salir del programa\n");
-  scanf("%hu", &opt);
+  scanf("%s", parse);
+  opt = atoi(parse);
     switch (opt) {
       case 8:
         exit = 1;
