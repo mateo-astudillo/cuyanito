@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <inc/menu.h>
+// #include <inc/menu.h> // Final
+#include "../inc/menu.h" // Dev
 
 int main(int argc, char **argv){
   menu();

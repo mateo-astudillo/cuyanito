@@ -1,6 +1,5 @@
 //#include <inc/menu.h> // Final
 #include "../inc/menu.h" // Dev
-#include <stdlib.h>
 
 int menu(){
   unsigned short int opt = 0;

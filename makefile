@@ -11,7 +11,7 @@ app: $(OBJS) $(INC)
 debug: $(OBJS) $(INC)
 	$(CC) -o $(BIN) $(OBJS) $(CFLAGS)
 
-objs/%.o: src/%.c
+objs/%.o: src/%.c inc/menu.h
 	$(CC) -c $< -o $@
 
 objs/%.o: src/search/%.c inc/search.h
