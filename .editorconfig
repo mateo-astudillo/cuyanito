@@ -1,0 +1,17 @@
+root = true
+
+# for all
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+
+# for headers and source code
+[*.{c,h}]
+indent_style = space
+indent_size = 4
+
+# for makefile
+[makefile]
+indent_style = tab
+indent_size = 4
