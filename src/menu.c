@@ -30,7 +30,7 @@ int menu(){
         //searh_price();
         break;
       case 4:
-        //show_employed();
+        //search_by_employee();
         break;
       case 5:
         //show_busisness();
