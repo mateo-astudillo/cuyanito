@@ -1,11 +1,9 @@
 //#include <inc/menu.h> // Final
 #include "../inc/menu.h" // Dev
+#include "../inc/cuyanito.h" // Dev
 
-int menu(){
-  unsigned short int opt = 0;
-  unsigned short int exit = 0;
+int menu(int *opt){
   char parse[LENGTH_PARSE];
-  while (!exit) {
   printf("1 Ingresar reparaciones\n");
   printf("2 Buscar una reparacion segun el tipo de dispositivo\n");
   printf("3 Buscar la reparacion con mayor precio final\n");
@@ -15,37 +13,7 @@ int menu(){
   printf("7 Almacenar todas las reparaciones\n");
   printf("8 Salir del programa\n");
   scanf("%s", parse);
-  opt = atoi(parse);
-    switch (opt) {
-      case 8:
-        exit = 1;
-        break;
-      case 1:
-        //insert();
-        break;
-      case 2:
-        //searh_type();
-        break;
-      case 3:
-        //searh_price();
-        break;
-      case 4:
-        //search_by_employee();
-        break;
-      case 5:
-        //show_busisness();
-        break;
-      case 6:
-        //show_date();
-        break;
-      case 7:
-        //update();
-        break;
-      default:
-        printf("Option incorrect\n");
-        break;
-    }
-  }
+  *opt = atoi(parse);
   return 0;
 }
 
