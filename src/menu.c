@@ -1,19 +1,26 @@
 //#include <inc/menu.h> // Final
-#include "../inc/menu.h" // Dev
 #include "../inc/cuyanito.h" // Dev
+#include "../inc/menu.h" // Dev
 
-int menu(int *opt){
-  char parse[LENGTH_PARSE];
-  printf("1 Ingresar reparaciones\n");
-  printf("2 Buscar una reparacion segun el tipo de dispositivo\n");
-  printf("3 Buscar la reparacion con mayor precio final\n");
-  printf("4 Mostrar las reparaciones realizadas por un empleado especifico\n");
-  printf("5 Mostrar las reparaciones correspondientes a una sola empresa\n");
-  printf("6 Mostrar las reparaciones realizadas en una fecha \n");
-  printf("7 Almacenar todas las reparaciones\n");
-  printf("8 Salir del programa\n");
+int menu(){
+  int option = 0;
+  char parse[MENU_PARSE];
+  char *options[] = {
+    "1 Ingresar reparaciones",
+    "2 Buscar una reparación segun el tipo de dispositivo",
+    "3 Buscar la reparacion con mayor precio final",
+    "4 Mostrar las reparaciones realizadas por un empleado especifico",
+    "5 Mostrar las reparaciones correspondientes a una sola empresa",
+    "6 Mostrar las reparaciones realizadas en una fecha",
+    "7 Almacenar todas las reparaciones",
+    "8 Salir del programa",
+  };
+  for (int i = 0; i < 8; i++) {
+    printf(" %s\n", options[i]);
+    usleep(50000);
+  }
   scanf("%s", parse);
-  *opt = atoi(parse);
-  return 0;
+  option = atoi(parse);
+  return option;
 }
 

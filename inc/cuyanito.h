@@ -3,6 +3,12 @@
 #define EMPLOYED_PATH "/home/mateo/Projects/C/Proyecto/data/empleados.dat"
 #define BUSINESS_PATH "/home/mateo/Projects/C/Proyecto/data/empleados.dat"
 
+#ifdef WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
+
 #define LENGTH_PARSE 16
 
 typedef struct {

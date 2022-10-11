@@ -4,9 +4,10 @@
 
 int main(int argc, char **argv) {
   REPAIR_LIST *repair_list = NULL;
-  int opt;
-  while (!menu(&opt)) {
-    switch (opt) {
+  int option = 0;
+  while (option != 8) {
+    option = menu();
+    switch (option) {
     case 1:
       insert_repair(&repair_list);
       break;
@@ -29,11 +30,11 @@ int main(int argc, char **argv) {
       // update();
       break;
     case 8:
-      printf("Goodbay\n");
-      exit(EXIT_SUCCESS);
+      // free_list
+      printf("Adiós\n");
       break;
     default:
-      printf("Option incorrect\n");
+      printf("Opción incorrecta\n");
       break;
     }
   }

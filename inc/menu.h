@@ -3,4 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int menu(int *);
+#define MENU_PARSE 16
+
+int menu();
