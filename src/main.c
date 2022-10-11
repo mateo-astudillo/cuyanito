@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
       // update();
       break;
     case 8:
-      // free_list
+      free_list(&repair_list);
       printf("Adiós\n");
       break;
     default:
