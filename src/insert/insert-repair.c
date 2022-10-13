@@ -25,7 +25,7 @@ int insert_repair(REPAIR_LIST **list) {
 }
 
 int get_data_repair(REPAIR *r) {
-  char parse[LENGTH_PARSE];
+  char text_temp[LENGTH_TMP];
   int tmp = 0;
 
   // Device
@@ -33,20 +33,18 @@ int get_data_repair(REPAIR *r) {
   printf("1 - PC\n");
   printf("2 - Notebook\n");
   printf("3 - Smartphone\n");
-  scanf("%s", parse);
-  tmp = atoi(parse);
+  scanf("%s", text_temp);
+  tmp = atoi(text_temp);
   if ( tmp > 0 && tmp < 4 ) {
     r->device = tmp;
   }
 
   // Employee code
   printf("Insert employee code\n");
-  scanf("%s", parse);
-  tmp = atoi(parse);
+  scanf("%s", text_temp);
+  tmp = atoi(text_temp);
   if ( tmp ) {
     r->employee_code = tmp;
   }
-
-
   return 0;
 }

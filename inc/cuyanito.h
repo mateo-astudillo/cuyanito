@@ -1,15 +1,21 @@
 #pragma once
 
-#define EMPLOYED_PATH "/home/mateo/Projects/C/Proyecto/data/empleados.dat"
-#define BUSINESS_PATH "/home/mateo/Projects/C/Proyecto/data/empleados.dat"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #ifdef WIN32
 #include <windows.h>
+#define CLEAR "cls"
 #else
 #include <unistd.h>
+#define CLEAR "clear"
 #endif
 
-#define LENGTH_PARSE 16
+#define EMPLOYED_PATH "/home/mateo/Projects/C/Proyecto/data/empleados.dat"
+#define BUSINESS_PATH "/home/mateo/Projects/C/Proyecto/data/empleados.dat"
+
+#define LENGTH_TMP 16
 
 typedef struct {
   int code;

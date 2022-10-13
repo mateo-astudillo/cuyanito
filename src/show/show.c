@@ -1,7 +1,7 @@
-#include "../../inc/show.h"
 #include "../../inc/cuyanito.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../../inc/show.h"
+
+// Devs functions
 
 #define FILEPATH "/home/mateo/Projects/C/Cuyanito/data/empleados.dat"
 #define FILEPATH2 "/home/mateo/Projects/C/Cuyanito/data/empresas.dat"
@@ -47,6 +47,5 @@ int show_repairs(REPAIR_LIST *rl){
     printf("Employee code: %d\n", rl->repair.employee_code);
     rl = rl->next;
   }
-
   return 0;
 }

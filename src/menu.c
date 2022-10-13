@@ -1,10 +1,9 @@
-//#include <inc/menu.h> // Final
-#include "../inc/cuyanito.h" // Dev
-#include "../inc/menu.h" // Dev
+#include "../inc/cuyanito.h"
+#include "../inc/menu.h" 
 
 int menu(){
   int option = 0;
-  char parse[MENU_PARSE];
+  char text_tmp[LENGTH_TMP];
   char *options[] = {
     "1 Ingresar reparaciones",
     "2 Buscar una reparación segun el tipo de dispositivo",
@@ -19,8 +18,8 @@ int menu(){
     printf(" %s\n", options[i]);
     usleep(50000);
   }
-  scanf("%s", parse);
-  option = atoi(parse);
+  scanf("%s", text_tmp);
+  option = atoi(text_tmp);
   return option;
 }
 

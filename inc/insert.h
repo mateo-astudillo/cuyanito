@@ -1,8 +1,5 @@
 #pragma once
 
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "cuyanito.h"
 
 int insert_repair(REPAIR_LIST **);
