@@ -1,6 +1,8 @@
 #include "../inc/cuyanito.h"
 #include "../inc/menu.h"
 #include "../inc/insert.h"
+#include "../inc/update.h"
+#include "../inc/show.h"
 
 int main(int argc, char **argv) {
   REPAIR_LIST *repair_list = NULL;
@@ -12,13 +14,13 @@ int main(int argc, char **argv) {
       insert_repair(&repair_list);
       break;
     case 2:
-      // searh_type();
+      // search_type();
       break;
     case 3:
-      // searh_price();
+      // search_price();
       break;
     case 4:
-      // search_by_employee();
+      // show_employee();
       break;
     case 5:
       // show_busisness();
@@ -27,11 +29,14 @@ int main(int argc, char **argv) {
       // show_date();
       break;
     case 7:
-      // update();
+      // save();
       break;
     case 8:
       free_list(&repair_list);
       printf("Adiós\n");
+      break;
+    case 9:
+      show(); // dev
       break;
     default:
       printf("Opción incorrecta\n");

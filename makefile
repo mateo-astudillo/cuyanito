@@ -5,7 +5,8 @@ OBJS = objs/main.o objs/menu.o \
 	objs/repair-by-business.o \
 	objs/repair-by-employee.o \
 	objs/repair-by-date.o \
-	objs/save.o
+	objs/save.o \
+	objs/show.o
 
 INC = inc/menu.h # Final
 BIN = ex
