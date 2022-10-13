@@ -6,7 +6,7 @@
 #define FILEPATH "/home/mateo/Projects/C/Cuyanito/data/empleados.dat"
 #define FILEPATH2 "/home/mateo/Projects/C/Cuyanito/data/empresas.dat"
 
-int show(){
+int show_data(){
   FILE *fl = fopen(FILEPATH, "rb");
   EMPLOYEE *em = malloc(sizeof(EMPLOYEE));
 
@@ -28,5 +28,25 @@ int show(){
 
   fclose(fl);
   free(bs);
+  return 0;
+}
+
+int show_repairs(REPAIR_LIST *rl){
+  while (rl != NULL) {
+    switch (rl->repair.device) {
+      case 1:
+        printf("Device: PC\n");
+        break;
+      case 2:
+        printf("Device: Notebook\n");
+        break;
+      case 3:
+        printf("Device: Smartphone\n");
+        break;
+    }
+    printf("Employee code: %d\n", rl->repair.employee_code);
+    rl = rl->next;
+  }
+
   return 0;
 }

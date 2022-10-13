@@ -36,7 +36,10 @@ int main(int argc, char **argv) {
       printf("Adiós\n");
       break;
     case 9:
-      show(); // dev
+      show_data(); // dev
+      break;
+    case 10:
+      show_repairs(repair_list); // dev
       break;
     default:
       printf("Opción incorrecta\n");
