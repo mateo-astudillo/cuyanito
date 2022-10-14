@@ -12,8 +12,9 @@
 #define CLEAR "clear"
 #endif
 
-#define EMPLOYED_PATH "/home/mateo/Projects/C/Proyecto/data/empleados.dat"
-#define BUSINESS_PATH "/home/mateo/Projects/C/Proyecto/data/empleados.dat"
+#define EMPLOYEE_PATH "/home/mateo/Projects/C/Cuyanito/data/empleados.dat"
+#define BUSINESS_PATH "/home/mateo/Projects/C/Cuyanito/data/empresas.dat"
+#define REPAIR_PATH   "/home/mateo/Projects/C/Cuyanito/data/repairs.dat"
 
 #define LENGTH_TMP 16
 
@@ -47,3 +48,4 @@ typedef struct REPAIR_LIST{
   struct REPAIR_LIST *next;
   struct REPAIR_LIST *prev;
 } REPAIR_LIST;
+

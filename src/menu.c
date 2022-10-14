@@ -1,5 +1,6 @@
 #include "../inc/cuyanito.h"
 #include "../inc/menu.h" 
+#include <stdio.h>
 
 int menu(){
   int option = 0;
@@ -13,8 +14,11 @@ int menu(){
     "6 Mostrar las reparaciones realizadas en una fecha",
     "7 Almacenar todas las reparaciones",
     "8 Salir del programa",
+    "9 Ver empleados y empresas",
+    "10 ver reparaciones",
   };
-  for (int i = 0; i < 8; i++) {
+  int size_options = sizeof(options) / sizeof(char*);
+  for (int i = 0; i < size_options; i++) {
     printf(" %s\n", options[i]);
     usleep(50000);
   }

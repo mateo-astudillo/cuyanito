@@ -3,7 +3,6 @@
 
 int insert_repair(REPAIR_LIST **list) {
   REPAIR_LIST *aux = *list;
-  REPAIR_LIST *last = NULL;
   REPAIR_LIST *new = malloc(sizeof(REPAIR_LIST));
   if (new == NULL) {
     return 1;
@@ -13,11 +12,10 @@ int insert_repair(REPAIR_LIST **list) {
     new->prev = NULL;
   } else {
     while (aux->next != NULL) {
-      last = aux;
       aux = aux->next;
     }
     aux->next = new;
-    new->prev = last;
+    new->prev = aux;
   }
   new->next = NULL;
   get_data_repair(&new->repair);
