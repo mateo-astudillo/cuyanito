@@ -3,8 +3,6 @@
 #include "../inc/insert.h"
 #include "../inc/update.h"
 #include "../inc/show.h"
-#include <stdlib.h>
-#include <unistd.h>
 
 int main(int argc, char **argv) {
   REPAIR_LIST *repair_list = NULL;
@@ -37,7 +35,7 @@ int main(int argc, char **argv) {
       break;
     case 8:
       free_list(&repair_list);
-      printf("Adiós\n");
+      printf("\n Adiós\n");
       break;
     case 9:
       show_data(); // dev
