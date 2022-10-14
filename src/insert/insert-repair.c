@@ -1,5 +1,71 @@
 #include "../../inc/cuyanito.h"
 #include "../../inc/insert.h"
+#include <stdio.h>
+#include <time.h>
+
+static int get_int(){
+  char text_tmp[LENGTH_TMP];
+  int num = 0;
+  scanf("%s", text_tmp);
+  num = atoi(text_tmp);
+  return num;
+}
+
+static float get_float(){
+  char text_tmp[LENGTH_TMP];
+  int num = 0;
+  scanf("%s", text_tmp);
+  num = atof(text_tmp);
+  return num;
+}
+
+static int get_data_repair(REPAIR *r) {
+  int num = 0;
+  float num_f = 0;
+  struct tm date;
+
+  // Device
+  while (num < 1 || num > 3) {
+    printf("Dispositivo:\n");
+    printf("1 - PC\n");
+    printf("2 - Notebook\n");
+    printf("3 - Celular\n");
+    num = get_int();
+  }
+  r->device = num ;
+
+  // Employee code
+  num = 0;
+  while (num < 1 || num > 11) {
+    printf("Código de empleado\n");
+    num = get_int();
+  }
+  r->employee_code = num ;
+
+  // Date
+  num = 0;
+  printf("Fecha\n");
+  while (num < 1 || num > 31) {
+    printf("Día 1-31\n");
+    num = get_int();
+  }
+  date.tm_mday = num;
+  num = 0;
+  while (num < 1 || num > 12) {
+    printf("Mes 1-12\n");
+    num = get_int();
+  }
+  date.tm_mon = num - 1; // tm_mon 0 - 11
+  num = 0;
+  while (num < 1900 || num > 2022) {
+    printf("Año 1900-2022\n");
+    num = get_int();
+  }
+  date.tm_year = num ;
+  strftime(r->date, 11, "%d/%m/%y\n", &date);
+
+  return 0;
+}
 
 int insert_repair(REPAIR_LIST **list) {
   REPAIR_LIST *aux = *list;
@@ -22,27 +88,3 @@ int insert_repair(REPAIR_LIST **list) {
   return 0;
 }
 
-int get_data_repair(REPAIR *r) {
-  char text_temp[LENGTH_TMP];
-  int tmp = 0;
-
-  // Device
-  printf("Dispositivo:\n");
-  printf("1 - PC\n");
-  printf("2 - Notebook\n");
-  printf("3 - Celular\n");
-  scanf("%s", text_temp);
-  tmp = atoi(text_temp);
-  if ( tmp > 0 && tmp < 4 ) {
-    r->device = tmp;
-  }
-
-  // Employee code
-  printf("Insert employee code\n");
-  scanf("%s", text_temp);
-  tmp = atoi(text_temp);
-  if ( tmp ) {
-    r->employee_code = tmp;
-  }
-  return 0;
-}

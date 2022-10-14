@@ -3,4 +3,4 @@
 #include "cuyanito.h"
 
 int insert_repair(REPAIR_LIST **);
-int get_data_repair();
+// int get_data_repair();

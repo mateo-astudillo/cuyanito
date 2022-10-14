@@ -43,6 +43,23 @@ int show_data(){
   return 0;
 }
 
+static void print_repair(REPAIR *r){
+  switch (r->device) {
+    case 1:
+      printf("Dispositivo: PC\n");
+      break;
+    case 2:
+      printf("Dispositivo: Notebook\n");
+      break;
+    case 3:
+      printf("Dispositivo: Celular\n");
+      break;
+  }
+  printf("Código de empleado: %d\n", r->employee_code);
+  printf("Fecha: %s\n", r->date);
+}
+
+
 int show_repairs(REPAIR_LIST *rl){
   FILE *fl = fopen(REPAIR_PATH, "a");
   fclose(fl);
@@ -51,50 +68,28 @@ int show_repairs(REPAIR_LIST *rl){
   int quantity_r = 0;
   if (stat(REPAIR_PATH, &stat_r) == -1) {
     perror("Stat");
-    return 1;
+    return -1;
   }
   quantity_r = stat_r.st_size / sizeof(REPAIR);
 
   fl = fopen(REPAIR_PATH, "rb");
   if (fl == NULL) {
     fclose(fl);
-    return 1;
+    return -1;
   }
 
   REPAIR *r = malloc(sizeof(REPAIR));
   printf("Reparaciones guardadas\n\n");
   for (int i = 0; i < quantity_r; i++) {
     fread(r, sizeof(REPAIR), 1, fl);
-    switch (r->device) {
-      case 1:
-        printf("Dispositivo: PC\n");
-        break;
-      case 2:
-        printf("Dispositivo: Notebook\n");
-        break;
-      case 3:
-        printf("Dispositivo: Celular\n");
-        break;
-    }
-    printf("Código de empleado: %d\n", r->employee_code);
+    print_repair(r);
   }
   fclose(fl);
   free(r);
 
   printf("\nReparaciones sin guardar\n\n");
   while (rl != NULL) {
-    switch (rl->repair.device) {
-      case 1:
-        printf("Dispositivo: PC\n");
-        break;
-      case 2:
-        printf("Dispositivo: Notebook\n");
-        break;
-      case 3:
-        printf("Dispositivo: Celular\n");
-        break;
-    }
-    printf("Código de empleado: %d\n", rl->repair.employee_code);
+    print_repair(&rl->repair);
     rl = rl->next;
   }
 
