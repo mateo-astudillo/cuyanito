@@ -3,8 +3,6 @@
 #include "../inc/insert.h"
 #include "../inc/update.h"
 #include "../inc/show.h"
-#include <stdlib.h>
-#include <unistd.h>
 
 int main(int argc, char **argv) {
   REPAIR_LIST *repair_list = NULL;

@@ -35,16 +35,16 @@ int show_repairs(REPAIR_LIST *rl){
   while (rl != NULL) {
     switch (rl->repair.device) {
       case 1:
-        printf("Device: PC\n");
+        printf("Dispositivo: PC\n");
         break;
       case 2:
-        printf("Device: Notebook\n");
+        printf("Dispositivo: Notebook\n");
         break;
       case 3:
-        printf("Device: Smartphone\n");
+        printf("Dispositivo: Celular\n");
         break;
     }
-    printf("Employee code: %d\n", rl->repair.employee_code);
+    printf("Código de empleado: %d\n", rl->repair.employee_code);
     rl = rl->next;
   }
   return 0;
