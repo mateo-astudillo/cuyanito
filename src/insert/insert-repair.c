@@ -1,7 +1,5 @@
 #include "../../inc/cuyanito.h"
 #include "../../inc/insert.h"
-#include <stdio.h>
-#include <time.h>
 
 static int get_int(){
   char text_tmp[LENGTH_TMP];
@@ -22,7 +20,7 @@ static float get_float(){
 static int get_data_repair(REPAIR *r) {
   int num = 0;
   float num_f = 0;
-  struct tm date;
+  int day, month, year;
 
   // Device
   while (num < 1 || num > 3) {
@@ -43,26 +41,28 @@ static int get_data_repair(REPAIR *r) {
   r->employee_code = num ;
 
   // Date
-  num = 0;
-  printf("Fecha\n");
-  while (num < 1 || num > 31) {
-    printf("Día 1-31\n");
-    num = get_int();
-  }
-  date.tm_mday = num;
-  num = 0;
-  while (num < 1 || num > 12) {
-    printf("Mes 1-12\n");
-    num = get_int();
-  }
-  date.tm_mon = num - 1; // tm_mon 0 - 11
-  num = 0;
-  while (num < 1900 || num > 2022) {
-    printf("Año 1900-2022\n");
-    num = get_int();
-  }
-  date.tm_year = num ;
-  strftime(r->date, 11, "%d/%m/%y\n", &date);
+  do {
+    num = 0;
+    printf("Fecha\n");
+    while (num < 1 || num > 31) {
+      printf("Día 1-31\n");
+      num = get_int();
+    }
+    day = num;
+    num = 0;
+    while (num < 1 || num > 12) {
+      printf("Mes 1-12\n");
+      num = get_int();
+    }
+    month = num;
+    num = 0;
+    while (num < 1900 || num > 2022) {
+      printf("Año 1900-2022\n");
+      num = get_int();
+    }
+    year = num;
+    num = sprintf(r->date, "%d/%d/%d\n", day, month, year);
+  } while ( !num );
 
   return 0;
 }
