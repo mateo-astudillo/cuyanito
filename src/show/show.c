@@ -1,6 +1,5 @@
 #include "../../inc/cuyanito.h"
 #include "../../inc/show.h"
-#include <sys/stat.h>
 
 // Devs functions
 
@@ -54,7 +53,7 @@ int show_repairs(REPAIR_LIST *rl){
     perror("Stat");
     return 1;
   }
-  quantity_r = stat_r.st_size / sizeof(BUSINESS);
+  quantity_r = stat_r.st_size / sizeof(REPAIR);
 
   fl = fopen(REPAIR_PATH, "rb");
   if (fl == NULL) {
@@ -63,7 +62,7 @@ int show_repairs(REPAIR_LIST *rl){
   }
 
   REPAIR *r = malloc(sizeof(REPAIR));
-  printf("Reparaciones guardadas\n");
+  printf("Reparaciones guardadas\n\n");
   for (int i = 0; i < quantity_r; i++) {
     fread(r, sizeof(REPAIR), 1, fl);
     switch (r->device) {
@@ -82,7 +81,7 @@ int show_repairs(REPAIR_LIST *rl){
   fclose(fl);
   free(r);
 
-  printf("Reparaciones sin guardar\n");
+  printf("\nReparaciones sin guardar\n\n");
   while (rl != NULL) {
     switch (rl->repair.device) {
       case 1:

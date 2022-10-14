@@ -3,14 +3,15 @@
 #include "../inc/insert.h"
 #include "../inc/update.h"
 #include "../inc/show.h"
-#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 int main(int argc, char **argv) {
   REPAIR_LIST *repair_list = NULL;
   int option = 0;
   while (option != 8) {
     option = menu();
-    printf("\n");
+    system(CLEAR);
     switch (option) {
     case 1:
       insert_repair(&repair_list);
@@ -48,6 +49,7 @@ int main(int argc, char **argv) {
       printf("Opción incorrecta\n");
       break;
     }
+    printf("\n");
   }
   return 0;
 }

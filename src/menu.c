@@ -1,6 +1,5 @@
 #include "../inc/cuyanito.h"
 #include "../inc/menu.h" 
-#include <stdio.h>
 
 int menu(){
   int option = 0;
@@ -22,6 +21,7 @@ int menu(){
     printf(" %s\n", options[i]);
     usleep(50000);
   }
+  printf(" > ");
   scanf("%s", text_tmp);
   option = atoi(text_tmp);
   return option;
