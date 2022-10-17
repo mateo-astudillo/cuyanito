@@ -1,11 +1,13 @@
 #include "../../inc/cuyanito.h"
 #include "../../inc/insert.h"
 
-static int get_int(){
+static int get_int(int min, int max){
   char text_tmp[LENGTH_TMP];
   int num = 0;
-  scanf("%s", text_tmp);
-  num = atoi(text_tmp);
+  while (num < min || num > max) {
+    scanf("%s", text_tmp);
+    num = atoi(text_tmp);
+  }
   return num;
 }
 
@@ -23,44 +25,26 @@ static int get_data_repair(REPAIR *r) {
   int day, month, year;
 
   // Device
-  while (num < 1 || num > 3) {
-    printf("Dispositivo:\n");
-    printf("1 - PC\n");
-    printf("2 - Notebook\n");
-    printf("3 - Celular\n");
-    num = get_int();
-  }
-  r->device = num ;
+  printf("Dispositivo:\n");
+  printf("1 - PC\n");
+  printf("2 - Notebook\n");
+  printf("3 - Celular\n");
+  r->device = get_int(1, 3);
 
   // Employee code
-  num = 0;
-  while (num < 1 || num > 11) {
-    printf("Código de empleado\n");
-    num = get_int();
-  }
-  r->employee_code = num ;
+  printf("Código de empleado\n");
+  r-> employee_code = get_int(1, 11);
 
   // Date
   do {
-    num = 0;
     printf("Fecha\n");
-    while (num < 1 || num > 31) {
-      printf("Día 1-31\n");
-      num = get_int();
-    }
-    day = num;
-    num = 0;
-    while (num < 1 || num > 12) {
-      printf("Mes 1-12\n");
-      num = get_int();
-    }
-    month = num;
-    num = 0;
-    while (num < 1900 || num > 2022) {
-      printf("Año 1900-2022\n");
-      num = get_int();
-    }
-    year = num;
+    printf("Día 1-31\n");
+    day = get_int(1, 31);
+    printf("Mes 1-12\n");
+    month = get_int(1, 12);
+    printf("Año 1-22\n");
+    year = get_int(1, 22);
+    year += 2000;
     num = sprintf(r->date, "%d/%d/%d\n", day, month, year);
   } while ( !num );
 

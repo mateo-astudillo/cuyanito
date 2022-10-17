@@ -6,6 +6,8 @@
 
 int main(int argc, char **argv) {
   REPAIR_LIST *repair_list = NULL;
+  REPAIR_LIST *repair_list_saved = NULL;
+
   int option = 0;
   while (option != 8) {
     option = menu();
