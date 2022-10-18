@@ -12,40 +12,38 @@ int quantity_of(char *file, int size_struct) {
   }
   quantity = stat_em.st_size / size_struct;
   
-  // FILE *f = fopen(file, "rb");
-  // fclose(f);
-
   return quantity;
 }
 
-int show_data(){
-  FILE *fl;
-  EMPLOYEE *em = malloc(sizeof(EMPLOYEE));
-  BUSINESS *bs = malloc(sizeof(BUSINESS));
-  int quantity_em = 11; 
-  int quantity_bs = 10;
-
+static void show_employess() {
+  FILE *f;
+  EMPLOYEE em;
+  int quantity_em = 0; 
   quantity_em = quantity_of( EMPLOYEES_PATH, sizeof(EMPLOYEE) );
-  fl = fopen(EMPLOYEES_PATH, "rb");
-  // fseek(fl, 0, SEEK_SET);
+  f = fopen(EMPLOYEES_PATH, "rb");
   for (int i = 0; i < quantity_em; i++) {
-    fread(em, sizeof(EMPLOYEE), 1, fl);
-    printf(" %d\n %s\n %s\n %s\n %s\n\n", em->code, em->dni, em->cuil, em->name, em->surname);
-  }
-  fclose(fl);
-
-  quantity_bs = quantity_of( BUSINESS_PATH, sizeof(BUSINESS) );
-  FILE *f = fopen(BUSINESS_PATH, "rb");
-  // fseek(fl, 0, SEEK_SET);
-  for (int i = 0; i < quantity_bs; i++) {
-    fread(bs, sizeof(BUSINESS), 1, f);
-    printf(" %d\n %s\n %s\n\n", bs->code, bs->cuit, bs->name);
+    fread(&em, sizeof(EMPLOYEE), 1, f);
+    printf(" %d\n %s\n %s\n %s\n %s\n\n", em.code, em.dni, em.cuil, em.name, em.name);
   }
   fclose(f);
+}
 
-  printf("%d qua em\n", quantity_em);
-  printf("%d qua em\n", quantity_bs);
+static void show_business() {
+  FILE *f;
+  BUSINESS bs;
+  int quantity_bs = 0; 
+  quantity_bs = quantity_of( BUSINESS_PATH, sizeof(BUSINESS) );
+  f = fopen(BUSINESS_PATH, "rb");
+  for (int i = 0; i < quantity_bs; i++) {
+    fread(&bs, sizeof(BUSINESS), 1, f);
+    printf(" %d\n %s\n %s\n\n", bs.code, bs.cuit, bs.name);
+  }
+  fclose(f);
+}
 
+int show_data(){
+  show_employess();
+  show_business();
   return 0;
 }
 
