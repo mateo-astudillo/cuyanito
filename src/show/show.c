@@ -43,8 +43,8 @@ int show_data(){
   return 0;
 }
 
-static void print_repair(REPAIR *r){
-  switch (r->device) {
+void print_repair(REPAIR r){
+  switch (r.device) {
     case 1:
       printf("Dispositivo: PC\n");
       break;
@@ -55,8 +55,8 @@ static void print_repair(REPAIR *r){
       printf("Dispositivo: Celular\n");
       break;
   }
-  printf("Código de empleado: %d\n", r->employee_code);
-  printf("Fecha: %s\n", r->date);
+  printf("Código de empleado: %d\n", r.employee_code);
+  printf("Fecha: %s\n", r.date);
 }
 
 
@@ -82,14 +82,14 @@ int show_repairs(REPAIR_LIST *rl){
   printf("Reparaciones guardadas\n\n");
   for (int i = 0; i < quantity_r; i++) {
     fread(r, sizeof(REPAIR), 1, fl);
-    print_repair(r);
+    print_repair(*r);
   }
   fclose(fl);
   free(r);
 
   printf("\nReparaciones sin guardar\n\n");
   while (rl != NULL) {
-    print_repair(&rl->repair);
+    print_repair(rl->repair);
     rl = rl->next;
   }
 

@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
       // search_price();
       break;
     case 4:
-      // show_employee();
+      show_by_employee(repair_list);
       break;
     case 5:
       // show_busisness();
