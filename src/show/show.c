@@ -1,44 +1,41 @@
 #include "../../inc/cuyanito.h"
 #include "../../inc/show.h"
 
-// Devs functions
+int quantity_of(char *file, int size_struct) {
+  struct stat stat_em;
+  int quantity = 0;
+  if ( stat(file, &stat_em) == -1 ) {
+    perror("Stat");
+    return -1;
+  }
+  quantity = stat_em.st_size / size_struct;
+
+  return quantity;
+}
+
 
 int show_data(){
-  struct stat stat_em;
-  int quantity_em = 0;
-  if (stat(EMPLOYEE_PATH, &stat_em) == -1) {
-    perror("Stat");
-    return 1;
-  }
-  quantity_em = stat_em.st_size / sizeof(EMPLOYEE);
+  EMPLOYEE em;
+  BUSINESS bs; 
+  int quantity_em = 0; 
+  int quantity_bs = 0;
 
-  FILE *fl = fopen(EMPLOYEE_PATH, "rb");
-
-  EMPLOYEE *em = malloc(sizeof(EMPLOYEE));
+  quantity_em = quantity_of(EMPLOYEES_PATH, sizeof(EMPLOYEE));
+  FILE *fl = fopen(EMPLOYEES_PATH, "rb");
   for (int i = 0; i < quantity_em; i++) {
-    fread(em, sizeof(EMPLOYEE), 1, fl);
-    printf(" %d\n %s\n %s\n %s\n %s\n\n", em->code, em->dni, em->cuil, em->name, em->surname);
+    fread(&em, sizeof(EMPLOYEE), 1, fl);
+    printf(" %d\n %s\n %s\n %s\n %s\n\n", em.code, em.dni, em.cuil, em.name, em.surname);
   }
   fclose(fl);
-  free(em);
 
   // Business
-  struct stat stat_bs;
-  int quantity_bs = 0;
-  if (stat(BUSINESS_PATH, &stat_bs) == -1) {
-    perror("Stat");
-    return 1;
-  }
-  quantity_bs = stat_bs.st_size / sizeof(BUSINESS);
-
+  quantity_bs = quantity_of(BUSINESS_PATH, sizeof(BUSINESS));
   fl = fopen(BUSINESS_PATH, "rb");
-  BUSINESS *bs = malloc(sizeof(BUSINESS));
   for (int i=0; i < quantity_bs; i++) {
-    fread(bs, sizeof(BUSINESS), 1, fl);
-    printf(" %d\n %s\n %s\n\n", bs->code, bs->cuit, bs->name);
+    fread(&bs, sizeof(BUSINESS), 1, fl);
+    printf(" %d\n %s\n %s\n\n", bs.code, bs.cuit, bs.name);
   }
   fclose(fl);
-  free(bs);
 
   return 0;
 }

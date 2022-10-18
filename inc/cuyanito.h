@@ -14,7 +14,7 @@
 #define CLEAR "clear"
 #endif
 
-#define EMPLOYEE_PATH "/home/mateo/Projects/C/Cuyanito/data/empleados.dat"
+#define EMPLOYEES_PATH "/home/mateo/Projects/C/Cuyanito/data/empleados.dat"
 #define BUSINESS_PATH "/home/mateo/Projects/C/Cuyanito/data/empresas.dat"
 #define REPAIR_PATH   "/home/mateo/Projects/C/Cuyanito/data/repairs.dat"
 

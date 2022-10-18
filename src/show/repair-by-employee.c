@@ -7,17 +7,17 @@ int show_by_employee(REPAIR_LIST *rl){ // repair list
   scanf("%d", &em_code);
   
   struct stat stat_r;
-  int quantity_r = 0;
+  int quantity_em = 0;
   if (stat(REPAIR_PATH, &stat_r) == -1) {
     perror("Stat");
     return -1;
   }
-  quantity_r = stat_r.st_size / sizeof(REPAIR);
+  quantity_em = stat_r.st_size / sizeof(REPAIR);
 
   REPAIR repair;
   FILE *rf = fopen(REPAIR_PATH, "rb"); // repair file
 
-  for(int i = 0; i < quantity_r; i++) {
+  for(int i = 0; i < quantity_em; i++) {
     fread(&repair, sizeof(REPAIR), 1, rf);
     if (repair.employee_code == em_code) {
       print_repair(repair);      
