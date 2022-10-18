@@ -1,6 +1,5 @@
 #include "../../inc/cuyanito.h"
 #include "../../inc/show.h"
-#include <sys/stat.h>
 
 int quantity_of(char *file, int size_struct) {
   struct stat stat_em;
@@ -86,12 +85,15 @@ int show_repairs(REPAIR_LIST *rl){
   fclose(fl);
 
   printf("\nReparaciones sin guardar\n\n");
-  while ( rl->next != NULL) {
-    rl = rl->next;
-  }
-  while ( rl != NULL ) {
-    print_repair(rl->repair);
-    rl = rl->prev;
+  if ( rl != NULL ) {
+    while ( rl->next != NULL) {
+      rl = rl->next;
+    }
+    while ( rl != NULL ) {
+      print_repair(rl->repair);
+      rl = rl->prev;
+    }
+
   }
 
   return 0;

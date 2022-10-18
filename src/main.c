@@ -4,6 +4,19 @@
 #include "../inc/update.h"
 #include "../inc/show.h"
 
+static void safe_exit(REPAIR_LIST *rl) {
+  if ( rl == NULL)
+    return; 
+
+  char option[LENGTH_TMP];
+  char *messages[] = {
+    "Está seguro que desea salir?",
+    "Tiene reparaciones sin guardar",
+    "Si - No (s - n)"
+  };
+  scanf("%s", option);
+}
+
 int main(int argc, char **argv) {
   REPAIR_LIST *repair_list = NULL;
   REPAIR_LIST *repair_list_saved = NULL;
@@ -26,12 +39,13 @@ int main(int argc, char **argv) {
       show_by_employee(repair_list);
       break;
     case 5:
-      // show_busisness();
+      show_by_busisness(repair_list);
       break;
     case 6:
-      // show_date();
+      show_by_date(repair_list);
       break;
     case 7:
+      safe_exit(repair_list)
       save(repair_list);
       free_list(&repair_list);
       break;
