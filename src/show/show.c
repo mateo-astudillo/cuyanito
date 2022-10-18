@@ -1,41 +1,50 @@
 #include "../../inc/cuyanito.h"
 #include "../../inc/show.h"
+#include <sys/stat.h>
 
 int quantity_of(char *file, int size_struct) {
   struct stat stat_em;
   int quantity = 0;
+
   if ( stat(file, &stat_em) == -1 ) {
     perror("Stat");
     return -1;
   }
   quantity = stat_em.st_size / size_struct;
+  
+  // FILE *f = fopen(file, "rb");
+  // fclose(f);
 
   return quantity;
 }
 
-
 int show_data(){
-  EMPLOYEE em;
-  BUSINESS bs; 
-  int quantity_em = 0; 
-  int quantity_bs = 0;
+  FILE *fl;
+  EMPLOYEE *em = malloc(sizeof(EMPLOYEE));
+  BUSINESS *bs = malloc(sizeof(BUSINESS));
+  int quantity_em = 11; 
+  int quantity_bs = 10;
 
-  quantity_em = quantity_of(EMPLOYEES_PATH, sizeof(EMPLOYEE));
-  FILE *fl = fopen(EMPLOYEES_PATH, "rb");
+  quantity_em = quantity_of( EMPLOYEES_PATH, sizeof(EMPLOYEE) );
+  fl = fopen(EMPLOYEES_PATH, "rb");
+  // fseek(fl, 0, SEEK_SET);
   for (int i = 0; i < quantity_em; i++) {
-    fread(&em, sizeof(EMPLOYEE), 1, fl);
-    printf(" %d\n %s\n %s\n %s\n %s\n\n", em.code, em.dni, em.cuil, em.name, em.surname);
+    fread(em, sizeof(EMPLOYEE), 1, fl);
+    printf(" %d\n %s\n %s\n %s\n %s\n\n", em->code, em->dni, em->cuil, em->name, em->surname);
   }
   fclose(fl);
 
-  // Business
-  quantity_bs = quantity_of(BUSINESS_PATH, sizeof(BUSINESS));
-  fl = fopen(BUSINESS_PATH, "rb");
-  for (int i=0; i < quantity_bs; i++) {
-    fread(&bs, sizeof(BUSINESS), 1, fl);
-    printf(" %d\n %s\n %s\n\n", bs.code, bs.cuit, bs.name);
+  quantity_bs = quantity_of( BUSINESS_PATH, sizeof(BUSINESS) );
+  FILE *f = fopen(BUSINESS_PATH, "rb");
+  // fseek(fl, 0, SEEK_SET);
+  for (int i = 0; i < quantity_bs; i++) {
+    fread(bs, sizeof(BUSINESS), 1, f);
+    printf(" %d\n %s\n %s\n\n", bs->code, bs->cuit, bs->name);
   }
-  fclose(fl);
+  fclose(f);
+
+  printf("%d qua em\n", quantity_em);
+  printf("%d qua em\n", quantity_bs);
 
   return 0;
 }
@@ -58,36 +67,33 @@ void print_repair(REPAIR r){
 
 
 int show_repairs(REPAIR_LIST *rl){
+  REPAIR r;
+  int quantity_r = 0;
+
   FILE *fl = fopen(REPAIR_PATH, "a");
   fclose(fl);
 
-  struct stat stat_r;
-  int quantity_r = 0;
-  if (stat(REPAIR_PATH, &stat_r) == -1) {
-    perror("Stat");
-    return -1;
-  }
-  quantity_r = stat_r.st_size / sizeof(REPAIR);
-
+  quantity_r = quantity_of( REPAIR_PATH, sizeof(REPAIR) );
   fl = fopen(REPAIR_PATH, "rb");
   if (fl == NULL) {
     fclose(fl);
     return -1;
   }
 
-  REPAIR *r = malloc(sizeof(REPAIR));
   printf("Reparaciones guardadas\n\n");
   for (int i = 0; i < quantity_r; i++) {
-    fread(r, sizeof(REPAIR), 1, fl);
-    print_repair(*r);
+    fread(&r, sizeof(REPAIR), 1, fl);
+    print_repair(r);
   }
   fclose(fl);
-  free(r);
 
   printf("\nReparaciones sin guardar\n\n");
-  while (rl != NULL) {
-    print_repair(rl->repair);
+  while ( rl->next != NULL) {
     rl = rl->next;
+  }
+  while ( rl != NULL ) {
+    print_repair(rl->repair);
+    rl = rl->prev;
   }
 
   return 0;

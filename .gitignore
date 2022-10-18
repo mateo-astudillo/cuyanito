@@ -1,3 +1,5 @@
 data/.*
 *.o
 ex
+show
+proof
