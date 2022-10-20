@@ -93,7 +93,6 @@ int show_repairs(REPAIR_LIST *rl){
       print_repair(rl->repair);
       rl = rl->prev;
     }
-
   }
 
   return 0;

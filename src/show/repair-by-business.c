@@ -2,7 +2,7 @@
 #include "../../inc/show.h"
 #include "../../inc/insert.h"
 
-int show_by_business(REPAIR_LIST *rl){ // repair list
+int show_by_business(REPAIR_LIST *rl) { // repair list
   REPAIR repair;
   int bs_code = 0;
   int quantity_bs = 0;

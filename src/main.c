@@ -4,17 +4,36 @@
 #include "../inc/update.h"
 #include "../inc/show.h"
 
-static void safe_exit(REPAIR_LIST *rl) {
-  if ( rl == NULL)
-    return; 
+static void safe_exit(REPAIR_LIST **rl, int *o) {
+  if ( *rl == NULL)
+    return;
 
-  char option[LENGTH_TMP];
+  int option = 0;
   char *messages[] = {
     "Está seguro que desea salir?",
     "Tiene reparaciones sin guardar",
-    "Si - No (s - n)"
+    "1 - Guardar y salir",
+    "2 - Solo guardar",
+    "3 - Salir sin guardar"
   };
-  scanf("%s", option);
+  for (int i = 0; i < 5; i++) {
+    printf(" %s\n", messages[i]);
+  }
+  option = get_int(1, 3, "");
+  switch (option) {
+    case 1:
+      save(*rl);
+      printf("\n Adiós\n");
+    case 2:
+      save(*rl);
+      *o = 11;
+      break;
+    case 3:
+      break;
+    default:
+      break;
+  }
+  free_list(rl);
 }
 
 int main(int argc, char **argv) {
@@ -39,25 +58,25 @@ int main(int argc, char **argv) {
       show_by_employee(repair_list);
       break;
     case 5:
-      show_by_busisness(repair_list);
+      show_by_business(repair_list);
       break;
     case 6:
-      show_by_date(repair_list);
+      // show_by_date(repair_list);
       break;
     case 7:
-      safe_exit(repair_list)
       save(repair_list);
       free_list(&repair_list);
       break;
     case 8:
-      free_list(&repair_list);
-      printf("\n Adiós\n");
+      safe_exit(&repair_list, &option);
       break;
     case 9:
       show_data(); // dev
       break;
     case 10:
       show_repairs(repair_list); // dev
+      break;
+    case 11:
       break;
     default:
       printf("Opción incorrecta\n");
