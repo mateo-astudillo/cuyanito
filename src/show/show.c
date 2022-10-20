@@ -62,38 +62,54 @@ void print_repair(REPAIR r){
   printf("Fecha: %s\n", r.date);
 }
 
-
-int show_repairs(REPAIR_LIST *rl){
+static int show_saved_repairs(int quantity_r) {
   REPAIR r;
-  int quantity_r = 0;
-
-  FILE *fl = fopen(REPAIR_PATH, "a");
-  fclose(fl);
-
-  quantity_r = quantity_of( REPAIR_PATH, sizeof(REPAIR) );
-  fl = fopen(REPAIR_PATH, "rb");
-  if (fl == NULL) {
-    fclose(fl);
+  printf("Reparaciones guardadas\n\n");
+  FILE *f = fopen(REPAIR_PATH, "rb");
+  if (f == NULL) {
+    fclose(f);
     return -1;
   }
 
-  printf("Reparaciones guardadas\n\n");
   for (int i = 0; i < quantity_r; i++) {
-    fread(&r, sizeof(REPAIR), 1, fl);
+    fread(&r, sizeof(REPAIR), 1, f);
     print_repair(r);
   }
-  fclose(fl);
+  fclose(f);
+  return 0;
+}
 
+static int show_not_saved_repairs(REPAIR_LIST *rl) {
+  REPAIR r;
   printf("\nReparaciones sin guardar\n\n");
-  if ( rl != NULL ) {
-    while ( rl->next != NULL) {
-      rl = rl->next;
-    }
-    while ( rl != NULL ) {
-      print_repair(rl->repair);
-      rl = rl->prev;
-    }
+  while ( rl->next != NULL) {
+    rl = rl->next;
   }
+  while ( rl != NULL ) {
+    print_repair(rl->repair);
+    rl = rl->prev;
+  }
+
+  return 0;
+}
+
+int show_repairs(REPAIR_LIST *rl){
+  int quantity_r = 0;
+
+  FILE *f = fopen(REPAIR_PATH, "a");
+  fclose(f);
+
+  quantity_r = quantity_of( REPAIR_PATH, sizeof(REPAIR) );
+  if ( !quantity_r && !rl) {
+    printf(" No hay reparaciones\n");
+    return 0;
+  }
+
+  if ( quantity_r )
+    show_saved_repairs(quantity_r);
+
+  if ( rl )
+    show_not_saved_repairs(rl);
 
   return 0;
 }

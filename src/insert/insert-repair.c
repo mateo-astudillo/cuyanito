@@ -5,21 +5,34 @@ int get_int(int min, int max, char *text){
   char text_tmp[LENGTH_TMP];
   int num = 0;
   while (num < min || num > max) {
-    printf("%s\n (%d - %d)\n > ", text, min, max);
+    printf(" %s\n (%d - %d)\n > ", text, min, max);
     scanf("%s", text_tmp);
     num = atoi(text_tmp);
   }
   return num;
 }
 
+char *get_date() {
+  char *date = malloc(11);
+  int day, month, year, ok;
+  do {
+    printf(" Fecha\n");
+    day = get_int(1, 31, "Día");
+    month = get_int(1, 12, "Mes");
+    year = get_int(1, 22, "Año");
+    year += 2000;
+    ok = sprintf(date, "%d/%d/%d\n", day, month, year);
+  } while ( !ok );
+  return date;
+}
+
 static int get_data_repair(REPAIR *r) {
-  int ok = 0;
-  int day, month, year;
+  int day, month, year, ok;
 
   r->device = get_int(1, 3, "Dispositivo\n 1 - PC\n 2 - Notebook\n 3 - Celular");
   r->employee_code = get_int(1, 11, "Código de empleado");
   do {
-    printf("Fecha\n");
+    printf(" Fecha\n");
     day = get_int(1, 31, "Día");
     month = get_int(1, 12, "Mes");
     year = get_int(1, 22, "Año");

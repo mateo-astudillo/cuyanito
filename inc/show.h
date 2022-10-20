@@ -10,4 +10,4 @@ int quantity_of(char *, int);
 
 int show_by_employee(REPAIR_LIST *); 
 int show_by_business(REPAIR_LIST *);
-// int show_by_date(REPAIR_LIST *);
+int show_by_date(REPAIR_LIST *);

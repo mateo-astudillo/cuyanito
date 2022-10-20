@@ -61,7 +61,7 @@ int main(int argc, char **argv) {
       show_by_business(repair_list);
       break;
     case 6:
-      // show_by_date(repair_list);
+      show_by_date(repair_list);
       break;
     case 7:
       save(repair_list);
