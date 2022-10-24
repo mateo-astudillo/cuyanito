@@ -24,11 +24,13 @@ static void safe_exit(REPAIR_LIST **rl, int *o) {
     case 1:
       save(*rl);
       printf("\n Adiós\n");
+      break;
     case 2:
       save(*rl);
       *o = 11;
       break;
     case 3:
+      printf("\n Adiós\n");
       break;
     default:
       break;
