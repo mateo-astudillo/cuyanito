@@ -22,7 +22,7 @@ static void show_employess() {
   f = fopen(EMPLOYEES_PATH, "rb");
   for (int i = 0; i < quantity_em; i++) {
     fread(&em, sizeof(EMPLOYEE), 1, f);
-    printf(" %d\n %s\n %s\n %s\n %s\n\n", em.code, em.dni, em.cuil, em.name, em.name);
+    printf(" %d\n %s\n %s\n %s\n %s\n\n", em.code, em.dni, em.cuil, em.name, em.surname);
   }
   fclose(f);
 }
@@ -49,22 +49,22 @@ int show_data(){
 void print_repair(REPAIR r){
   switch (r.device) {
     case 1:
-      printf("Dispositivo: PC\n");
+      printf(" Dispositivo: PC\n");
       break;
     case 2:
-      printf("Dispositivo: Notebook\n");
+      printf(" Dispositivo: Notebook\n");
       break;
     case 3:
-      printf("Dispositivo: Celular\n");
+      printf(" Dispositivo: Celular\n");
       break;
   }
-  printf("Código de empleado: %d\n", r.employee_code);
-  printf("Fecha: %s\n", r.date);
+  printf(" Código de empleado: %d\n", r.employee_code);
+  printf(" Fecha: %s\n", r.date);
 }
 
 static int show_saved_repairs(int quantity_r) {
   REPAIR r;
-  printf("Reparaciones guardadas\n\n");
+  printf(" Reparaciones guardadas\n\n");
   FILE *f = fopen(REPAIR_PATH, "rb");
   if (f == NULL) {
     fclose(f);
@@ -81,7 +81,7 @@ static int show_saved_repairs(int quantity_r) {
 
 static int show_not_saved_repairs(REPAIR_LIST *rl) {
   REPAIR r;
-  printf("\nReparaciones sin guardar\n\n");
+  printf("\n Reparaciones sin guardar\n\n");
   while ( rl->next != NULL) {
     rl = rl->next;
   }
