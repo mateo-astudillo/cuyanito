@@ -3,18 +3,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 
 #ifdef WIN32
-#include <windows.h>
-#define CLEAR "cls"
+  #include <windows.h>
+  #define CLEAR "cls"
+  #define EMPLOYEES_PATH ".\\data\\empleados.dat"
+  #define BUSINESS_PATH ".\\data\\empresas.dat"
+  #define REPAIR_PATH   ".\\data\\repairs.dat"
 #else
-#include <unistd.h>
-#define CLEAR "clear"
+  #include <unistd.h>
+  #define CLEAR "clear"
+  // #define EMPLOYEES_PATH "./data/empleados.dat"
+  // #define BUSINESS_PATH "./data/empresas.dat"
+  // #define REPAIR_PATH   "./data/repairs.dat"
+  #define EMPLOYEES_PATH "/home/mateo/Projects/C/Cuyanito/data/empleados.dat"
+  #define BUSINESS_PATH "/home/mateo/Projects/C/Cuyanito/data/empresas.dat"
+  #define REPAIR_PATH   "/home/mateo/Projects/C/Cuyanito/data/repairs.dat"
 #endif
 
-#define EMPLOYEE_PATH "/home/mateo/Projects/C/Cuyanito/data/empleados.dat"
-#define BUSINESS_PATH "/home/mateo/Projects/C/Cuyanito/data/empresas.dat"
-#define REPAIR_PATH   "/home/mateo/Projects/C/Cuyanito/data/repairs.dat"
 
 #define LENGTH_TMP 16
 

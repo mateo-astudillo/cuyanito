@@ -10,13 +10,14 @@ OBJS = objs/main.o objs/menu.o \
 
 INC = inc/menu.h # Final
 BIN = ex
-CFLAGS = -g -Wall
+CFLAGS = -Wall
+CFLAGSDEBUG = -Wall -g
 
 app: $(OBJS) 
-	$(CC) -o $(BIN) $(OBJS)
+	$(CC) -o $(BIN) $(OBJS) $(CFLAGS)
 
 debug: $(OBJS) 
-	$(CC) -o $(BIN) $(OBJS) $(CFLAGS)
+	$(CC) -o $(BIN) $(OBJS) $(CFLAGSDEBUG)
 
 objs/%.o: src/%.c inc/menu.h
 	$(CC) -c $< -o $@

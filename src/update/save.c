@@ -2,7 +2,7 @@
 #include "../../inc/update.h"
 
 int save(REPAIR_LIST *rl){
-  FILE *fl = fopen(REPAIR_PATH, "wb");
+  FILE *fl = fopen(REPAIR_PATH, "ab");
   if (fl == NULL) {
     fclose(fl);
     return 1;
