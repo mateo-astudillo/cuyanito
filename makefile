@@ -1,7 +1,7 @@
 OBJS = objs/main.o objs/menu.o \
 	objs/insert-repair.o \
-	objs/by-employee.o \
-	objs/by-business.o \
+	objs/search-by-employee.o \
+	objs/search-by-business.o \
 	objs/repair-by-business.o \
 	objs/repair-by-employee.o \
 	objs/repair-by-date.o \
