@@ -4,7 +4,6 @@
 
 int show_by_date(REPAIR_LIST *rl) { // repair list
   REPAIR repair;
-  int bs_code = 0; // business
   int quantity_r = 0; // repair quantity
   char date[11];
   char *text_tmp;
@@ -14,8 +13,8 @@ int show_by_date(REPAIR_LIST *rl) { // repair list
 
   text_tmp = get_date();
   strcpy( date, text_tmp );
-  free(text_tmp);
 
+  int ok = 0;
   for(int i = 0; i < quantity_r; i++) {
     fread(&repair, sizeof(REPAIR), 1, rf);
     if ( !strcmp(date, repair.date) ) {
@@ -23,6 +22,7 @@ int show_by_date(REPAIR_LIST *rl) { // repair list
     }
   }
   
+  free(text_tmp);
   fclose(rf);
   return 0;
 }

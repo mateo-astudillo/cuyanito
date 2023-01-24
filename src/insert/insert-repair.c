@@ -21,7 +21,7 @@ char *get_date() {
     month = get_int(1, 12, "Mes");
     year = get_int(1, 22, "Año");
     year += 2000;
-    ok = sprintf(date, "%d/%d/%d\n", day, month, year);
+    ok = sprintf(date, "%0.2d/%0.2d/%0.2d", day, month, year);
   } while ( !ok );
   return date;
 }
@@ -37,8 +37,7 @@ static int get_data_repair(REPAIR *r) {
     month = get_int(1, 12, "Mes");
     year = get_int(1, 22, "Año");
     year += 2000;
-    ok = sprintf(r->date, "%0.2d/%0.2d/%0.2d\n", day, month, year);
-    printf("%s", r->date);
+    ok = sprintf(r->date, "%0.2d/%0.2d/%0.2d", day, month, year);
   } while ( !ok );
 
   return 0;
