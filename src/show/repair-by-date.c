@@ -4,14 +4,13 @@
 
 int show_by_date(REPAIR_LIST *rl) { // repair list
   REPAIR repair;
-  int bs_code = 0;
-  int quantity_r = 0;
+  int bs_code = 0; // business
+  int quantity_r = 0; // repair quantity
   char date[11];
   char *text_tmp;
 
   quantity_r = quantity_of( REPAIR_PATH, sizeof(REPAIR) );
   FILE *rf = fopen(REPAIR_PATH, "rb"); // repair file
-
 
   text_tmp = get_date();
   strcpy( date, text_tmp );
