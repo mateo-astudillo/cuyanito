@@ -78,8 +78,6 @@ int main(int argc, char **argv) {
     case 10:
       show_repairs(repair_list); // dev
       break;
-    case 11:
-      break;
     default:
       printf("Opción incorrecta\n");
       break;
