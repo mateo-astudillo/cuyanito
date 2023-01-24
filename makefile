@@ -1,10 +1,6 @@
 OBJS = objs/main.o objs/menu.o \
 	objs/insert-repair.o \
-<<<<<<< HEAD
 	objs/search-by-employee.o \
-=======
-	objs/search-by-business.o \
->>>>>>> beta
 	objs/search-by-business.o \
 	objs/repair-by-business.o \
 	objs/repair-by-employee.o \
